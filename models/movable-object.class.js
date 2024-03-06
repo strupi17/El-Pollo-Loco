@@ -7,6 +7,7 @@ class MovableObject {
   width = 100;
   currentImage = 0;
   speed = 0.15;
+  otherDiretion = false;
 
   loadImage(path){
     this.img = new Image(); // this.img ist das gleiche wie document.getElementByID('image')
@@ -19,7 +20,6 @@ class MovableObject {
       img.src = path;
       this.imageCache[path] = img;
     });
-   
   }
 
   moveRight() {
