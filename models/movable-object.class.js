@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject{
   accelration = 2.5;
   energy = 100;
   lastHit = 0;
+  groundY = 180;
 
   applyGravity() {
     setInterval(() => {
@@ -16,7 +17,7 @@ class MovableObject extends DrawableObject{
   }
 
   isAboveGround() {
-    return this.y < 180;
+    return this.y < this.groundY;
   }
 
   isColliding(mo){
