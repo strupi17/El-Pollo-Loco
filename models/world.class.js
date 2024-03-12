@@ -17,43 +17,52 @@ class World {
     this.run();
   }
 
-  setWorld(){
+  setWorld() {
     this.character.world = this;
   }
 
-  run(){
+  run() {
     setInterval(() => {
       this.chechCollisions();
       this.checkThrowObjects();
     }, 100);
   }
 
-  chechCollisions(){
+  chechCollisions() {
     this.chechCollisionsWithEnemys();
     this.chechCollisionsWithCoins();
+    this.chechCollisionsWithBottles();
   }
 
-  chechCollisionsWithEnemys(){
+  chechCollisionsWithEnemys() {
     this.level.enemies.forEach((enemy) => {
-      if(this.character.isColliding(enemy)){
+      if (this.character.isColliding(enemy)) {
         // this.character.hit();
-        this.statusBar.setPercentage(this.character.energy)
+        this.statusBar.setPercentage(this.character.energy);
       }
-     });
+    });
   }
 
-  chechCollisionsWithCoins(){
-    this.level.coins.forEach((coin) => {
-      if(this.character.isColliding(coin)){
-        console.log('collision with Charecter coin');
+  chechCollisionsWithCoins() {
+    this.level.coins.forEach((coin, index) => {
+      if (this.character.isColliding(coin)) {
+        this.level.coins.splice(index, 1);
       }
-     });
+    });
   }
 
-  checkThrowObjects(){
-    if(this.keyboard.SPACE){
+  chechCollisionsWithBottles(){
+    this.level.bottles.forEach((bottle, index) => {
+      if (this.character.isColliding(bottle)) {
+        this.level.bottles.splice(index, 1);
+      }
+    });
+  }
+
+  checkThrowObjects() {
+    if (this.keyboard.SPACE) {
       let bottle = new ThrowableObject(this.character.x, this.character.y);
-      this.throwableObjects.push(bottle)
+      this.throwableObjects.push(bottle);
     }
   }
 
@@ -65,6 +74,7 @@ class World {
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.coins);
+    this.addObjectsToMap(this.level.bottles);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
 
@@ -90,25 +100,25 @@ class World {
   }
 
   addToMap(mo) {
-    if(mo.otherDiretion){
+    if (mo.otherDiretion) {
       this.flipImage(mo);
     }
     mo.draw(this.ctx);
     mo.drawFrame(this.ctx);
 
-    if(mo.otherDiretion){
+    if (mo.otherDiretion) {
       this.flipImageBack(mo);
     }
   }
 
-  flipImage(mo){
+  flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
     this.ctx.scale(-1, 1);
     mo.x = mo.x * -1;
   }
 
-  flipImageBack(mo){
+  flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
