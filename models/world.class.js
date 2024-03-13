@@ -5,7 +5,7 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
-  statusBar = new StatusBar();
+  statusBar = [new HealthStatusBar(), new CoinsStatusBar(), new BottlesStatusBar()];
   throwableObjects = [];
 
   constructor(canvas, keyboard) {
@@ -37,8 +37,8 @@ class World {
   chechCollisionsWithEnemys() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
-        // this.character.hit();
-        this.statusBar.setPercentage(this.character.energy);
+        this.character.hit();
+        this.statusBar[0].setPercentage(this.character.energy, this.statusBar[0].HEALTH_IMAGES);
       }
     });
   }
@@ -80,7 +80,7 @@ class World {
 
     // Fixt Objects
     this.ctx.translate(-this.camera_x, 0);
-    this.addToMap(this.statusBar);
+    this.addObjectsToMap(this.statusBar);
     this.ctx.translate(this.camera_x, 0);
 
     this.addToMap(this.character);
