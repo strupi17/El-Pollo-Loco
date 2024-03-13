@@ -25,6 +25,7 @@ class ThrowableObject extends MovableObject {
     this.applyGravity();
     this.animate();
   }
+
   animate() {
     setInterval(() => {
       if (this.otherDiretion) {

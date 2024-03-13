@@ -6,6 +6,8 @@ class DrawableObject {
   y = 280;
   height = 150;
   width = 100;
+  coins = 0;
+  bottles = 0;
 
   loadImage(path) {
     this.img = new Image(); // this.img ist das gleiche wie document.getElementByID('image')
@@ -33,4 +35,17 @@ class DrawableObject {
       ctx.stroke();
     }
   }
+ 
+  collectCoins(){
+    if(this.coins < 100){
+      this.coins += 10;
+    }
+  }
+
+  collectBottels(){
+    if(this.bottles < 100){
+      this.bottles += 10;
+    }
+  }
+
 }
