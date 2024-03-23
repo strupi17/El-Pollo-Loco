@@ -1,6 +1,6 @@
 Start Screen / Level erst dann setzten wenn start gedrückt worden ist 
 Musik
-Coins einsammeln
+Coins einsammeln 
 Flaschen einsammeln
 Flaschen nur werfen, wenn sie vorhanden sind
 Colision

@@ -25,27 +25,36 @@ class World {
 
   run() {
     setInterval(() => {
-      this.chechCollisions();
+      this.checkCollisions();
       this.checkThrowObjects();
     }, 100);
   }
 
-  chechCollisions() {
-    this.chechCollisionsWithEnemys();
-    this.chechCollisionsWithCoins();
-    this.chechCollisionsWithBottles();
+  checkCollisions() {
+    this.checkCollisionsWithEnemys();
+    this.checkCollisionsWithCoins();
+    this.checkCollisionsWithBottles();
+    this.checkCollisionsBottlesWithEnemys();
   }
 
-  chechCollisionsWithEnemys() {
+  checkCollisionsWithEnemys() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
-        this.character.hit();
+        if(this.character.isAboveGround() && this.character.speedY < 0){
+          if(!enemy.isDead()){
+            this.character.speedY = 10;
+          }
+          enemy.kill();
+        }
+        if(!enemy.isDead()){
+          this.character.hit();
+        }
         this.healthStatusBar.setPercentage(this.character.energy, this.healthStatusBar.HEALTH_IMAGES);
       }
     });
   }
 
-  chechCollisionsWithCoins() {
+  checkCollisionsWithCoins() {
     this.level.coins.forEach((coin, index) => {
       if (this.character.isColliding(coin)) {
         this.level.coins.splice(index, 1);
@@ -55,7 +64,7 @@ class World {
     });
   }
 
-  chechCollisionsWithBottles() {
+  checkCollisionsWithBottles() {
     this.level.bottles.forEach((bottle, index) => {
       if (this.character.isColliding(bottle)) {
         this.level.bottles.splice(index, 1);
@@ -63,6 +72,17 @@ class World {
         this.bottlesStatusBar.setPercentage(this.character.bottles, this.bottlesStatusBar.BOTTLE_IMAGES);
       }
     });
+  }
+
+  checkCollisionsBottlesWithEnemys(){
+    this.throwableObjects.forEach((to) => {
+      this.level.enemies.forEach((enemy, index) => {
+        if(to.isColliding(enemy)){
+          this.level.enemies[index].kill();
+          // this.throwableObjects.splice(0, 1);
+        }
+      })
+    })
   }
 
   checkThrowObjects() {
