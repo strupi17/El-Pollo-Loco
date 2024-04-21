@@ -47,7 +47,7 @@ class World {
           enemy.kill();
         }
         if(!enemy.isDead()){
-          this.character.hit();
+          // this.character.hit();
         }
         this.healthStatusBar.setPercentage(this.character.energy, this.healthStatusBar.HEALTH_IMAGES);
       }
@@ -79,7 +79,7 @@ class World {
       this.level.enemies.forEach((enemy, index) => {
         if(to.isColliding(enemy)){
           this.level.enemies[index].kill();
-          // this.throwableObjects.splice(0, 1);
+          this.throwableObjects.splice(to, 1);
         }
       })
     })
@@ -115,6 +115,7 @@ class World {
     this.addToMap(this.bottlesStatusBar);
     this.ctx.translate(this.camera_x, 0);
 
+    // not Fixet
     this.addToMap(this.character);
 
     this.ctx.translate(-this.camera_x, 0);
