@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>El Pollo Loco</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="img/2_character_pepe/1_idle/idle/I-1.png">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="img/2_character_pepe/1_idle/idle/I-1.png" />
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
     <script src="models/status-bar.class.js"></script>
@@ -25,12 +25,18 @@
     <script src="models/level.class.js"></script>
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
-</head>
-<body onload="init()">
+  </head>
+  <body onload="init()">
 
     <h1>El pollo loco</h1>
-    
-    <canvas width="720" height="480" id="canvas"></canvas>
 
-</body>
+    <div id="gameContainer" class="gameContainer">
+      <div id="startScreen" class="startScreen d-none">
+        <button>Start</button>
+      </div> 
+      <div id="gameScreen" >
+        <canvas width="720" height="480" id="canvas"></canvas>
+      </div>  
+    </div>
+  </body>
 </html>
