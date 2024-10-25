@@ -1,13 +1,20 @@
 Start Screen / Level erst dann setzten wenn start gedrückt worden ist 
 Musik
-Coins einsammeln 
-Flaschen einsammeln
-Flaschen nur werfen, wenn sie vorhanden sind
+    dazu noch ein Button um ton aus zu machen
 Colision
 Endgegner Besiegen
+    Endgegner Statusbar
+    Endgegner Leben Verringern
 Game-Over Screen
 Fullscreen
 Erklärung welche Taste was kann
 
 Hintergrund Bild / CSS body Backund img
 Schriftart Ändern / Zabars Fons
+
+Level erhöhen
+
+
+Coins einsammeln / geht 
+Flaschen einsammeln / geht
+Flaschen nur werfen, wenn sie vorhanden sind / geht

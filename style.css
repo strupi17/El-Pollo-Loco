@@ -30,6 +30,7 @@ h1{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    gap: 50px;
 }
 .startScreen button{
     height: 75px;
