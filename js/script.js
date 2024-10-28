@@ -61,6 +61,12 @@ function editSelectionLevel(level) {
   levelArray[level]["selection"] = true;
   saveLevelArrayOnLocalStorage();
   backStartScreen();
+  loadWoldNew();
+}
+
+function loadWoldNew(){
+  world = "";
+  world = new World(canvas, keyboard);
 }
 
 function backStartScreen() {

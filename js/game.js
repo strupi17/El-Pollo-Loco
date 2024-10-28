@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
+  loadLevelFromLocalStorage();
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
 }

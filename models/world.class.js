@@ -1,6 +1,6 @@
 class World {
   character = new Character();
-  level = level1;
+  level;
   canvas;
   ctx;
   keyboard;
@@ -14,9 +14,21 @@ class World {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
+    this.loadSelectedLevel();
     this.draw();
     this.setWorld();
     this.run();
+  }
+
+  loadSelectedLevel() {
+    for (let i = 0; i < levelArray.length; i++) {
+      if (levelArray[0]["selection"]) {
+        this.level = level1;
+      }
+      if (levelArray[1]["selection"]) {
+        this.level = level2;
+      }
+    }
   }
 
   setWorld() {
@@ -40,13 +52,13 @@ class World {
   checkCollisionsWithEnemys() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
-        if(this.character.isAboveGround() && this.character.speedY < 0){
-          if(!enemy.isDead()){
+        if (this.character.isAboveGround() && this.character.speedY < 0) {
+          if (!enemy.isDead()) {
             this.character.speedY = 10;
           }
           enemy.kill();
         }
-        if(!enemy.isDead()){
+        if (!enemy.isDead()) {
           // this.character.hit();
         }
         this.healthStatusBar.setPercentage(this.character.energy, this.healthStatusBar.HEALTH_IMAGES);
@@ -74,15 +86,15 @@ class World {
     });
   }
 
-  checkCollisionsBottlesWithEnemys(){
+  checkCollisionsBottlesWithEnemys() {
     this.throwableObjects.forEach((to) => {
       this.level.enemies.forEach((enemy, index) => {
-        if(to.isColliding(enemy)){
+        if (to.isColliding(enemy)) {
           this.level.enemies[index].kill();
           this.throwableObjects.splice(to, 1);
         }
-      })
-    })
+      });
+    });
   }
 
   checkThrowObjects() {
